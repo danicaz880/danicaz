@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Movie Recommender</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h1 {
+      color: #333;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .recommended {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Movie Recommender</h1>
+  <ul id="movie-list"></ul>
+  <p class="recommended" id="recommend-check"></p>
+
+  <script>
+    const movies = [
+      { title: "Inception", genre: "Sci-Fi", rating: 8.8 },
+      { title: "Frozen", genre: "Animation", rating: 7.5 },
+      { title: "The Godfather", genre: "Crime", rating: 9.2 },
+      { title: "Interstellar", genre: "Sci-Fi", rating: 8.6 }
+    ];
+
+    // 
+    const topRated = movies.filter(movie => movie.rating >= 8);
+
+    // 
+    const formattedTitles = topRated.map(
+      movie => `${movie.title} (${movie.genre}) - ${movie.rating} ⭐`
+    );
+
+    // 
+    const recommend = (movie, minRating = 8) => movie.rating >= minRating;
+
+    // 
+    const movieList = document.getElementById('movie-list');
+    formattedTitles.forEach(title => {
+      const li = document.createElement('li');
+      li.textContent = title;
+      movieList.appendChild(li);
+    });
+
+    // 
+    const recommendCheck = document.getElementById('recommend-check');
+    recommendCheck.textContent = `Is "Frozen" recommended? ${recommend(movies[1]) ? 'Yes' : 'No'}`;
+  </script>
+</body>
+</html>
