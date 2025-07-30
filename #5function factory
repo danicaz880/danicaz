@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Function Factory</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: #f2f4f8;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #222;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #4a4a4a;
+    }
+
+    .output {
+      background-color: #eef1f7;
+      padding: 15px;
+      border-radius: 8px;
+      white-space: pre-line;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛠️ Function Factory </h1>
+  <div class="container">
+    <div class="section">
+      <div class="section-title">Output:</div>
+      <div class="output" id="results"></div>
+    </div>
+  </div>
+
+  <script>
+    //
+    const makeMultiplier = factor => number => factor * number;
+    const makeGreeter = greeting => name => `${greeting}, ${name}!`;
+
+    // 
+    const double = makeMultiplier(2);
+    const triple = makeMultiplier(3);
+    const sayHi = makeGreeter("Hi");
+    const sayHello = makeGreeter("Hello");
+
+    // 
+    const results = `
+double(5): ${double(5)}
+triple(4): ${triple(4)}
+sayHi("Mia"): ${sayHi("Mia")}
+sayHello("Dan"): ${sayHello("Dan")}
+    `;
+
+    //
+    document.getElementById('results').textContent = results;
+  </script>
+</body>
+</html>
