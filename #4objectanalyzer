@@ -1,0 +1,67 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Object Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h1 {
+      color: #333;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .summary {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Object Property Analyzer</h1>
+  <ul id="enabled-list"></ul>
+  <p class="summary" id="enabled-count"></p>
+  <div class="summary">
+    Rebuilt object:
+    <pre id="rebuilt-object"></pre>
+  </div>
+
+  <script>
+    const settings = {
+      darkMode: true,
+      notifications: false,
+      autoSave: true,
+      spellCheck: false,
+      grammarCheck: true
+    };
+
+    // 
+    const entries = Object.entries(settings);
+    const enabledEntries = entries.filter(([key, value]) => value === true);
+
+    // 
+    const enabledList = document.getElementById('enabled-list');
+    enabledEntries.forEach(([key, value]) => {
+      const li = document.createElement('li');
+      li.textContent = `${key}: ${value}`;
+      enabledList.appendChild(li);
+    });
+
+    // 
+    const count = enabledEntries.length;
+    document.getElementById('enabled-count').textContent = `Total enabled settings: ${count}`;
+
+    // 
+    const rebuiltObject = Object.fromEntries(enabledEntries);
+    document.getElementById('rebuilt-object').textContent = JSON.stringify(rebuiltObject, null, 2);
+  </script>
+</body>
+</html>
